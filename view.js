@@ -1,0 +1,1 @@
+import * as control from "./control";
