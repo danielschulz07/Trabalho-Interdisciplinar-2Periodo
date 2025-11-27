@@ -1,1 +1,1 @@
-import * as control from "./control";
+import * as control from "./competicoesControl.js";

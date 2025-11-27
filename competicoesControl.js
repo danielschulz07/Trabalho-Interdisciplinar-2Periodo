@@ -1,1 +1,1 @@
-import * as model from "./model";
+import * as model from "./competicoesModel.js";
