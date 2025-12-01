@@ -4,8 +4,8 @@ import { TrailRunning } from "./TrailRunning.js";
 import { Maratona } from "./Maratona.js";
 
 
-var teste = new Pessoa(1213,3123,123,1231,23);
-var teste2 = new Pessoa("zxc","zxcz","zxc","zxc","zxc");
+var teste = new Pessoa(1213,3123,123,123);
+var teste2 = new Pessoa("zxc","zxcz","zxc","zxc");
 
 
 export var vetPessoa = [teste, teste2];

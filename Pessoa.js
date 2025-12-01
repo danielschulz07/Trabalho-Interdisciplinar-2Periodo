@@ -2,19 +2,17 @@ export class Pessoa {
     static #idPessoaStatic = 0;
     #idPessoa;
     #nome;
-    #idade;
     #cpf;
-    #email;
+    #idade;
     #dtNascimento;
     #qtdCorridasPassadas = 0;
     #nomeCorridasPassadas = [];
     #tipoCorridasPassadas = [];
 
-    constructor (nome, cpf, dtNasc, idade, email) {
+    constructor (nome, cpf, dtNasc, idade) {
         this.#nome = nome;
-        this.#idade = idade;
         this.#cpf = cpf;
-        this.#email = email;
+        this.#idade = idade;
         this.#dtNascimento = dtNasc;
 
         this.#idPessoa = Pessoa.#idPessoaStatic;
