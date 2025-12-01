@@ -23,7 +23,7 @@ export class Corrida {
     }
 
     historico(pessoa){
-        pessoa.historico(pessoa.id,this.#nomeCorrida);//essa função sera chamada no model recebendo o id dos corredores direto do vetor com foreach (n sei se vai funcionar)
+        pessoa.historico(pessoa.id,this.#nomeCorrida);
     }
 
         toString() {

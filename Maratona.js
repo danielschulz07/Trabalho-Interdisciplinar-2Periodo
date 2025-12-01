@@ -9,7 +9,6 @@ export class Maratona extends Corrida{
         
         this.#modalidade = modalidade;
         this.#altimetria = altimetria;
-        //this.#idMaratona = super.idCorrida;
     }
 
 }
