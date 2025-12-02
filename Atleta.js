@@ -1,6 +1,6 @@
-export class Pessoa {
-    static #idPessoaStatic = 0;
-    #idPessoa;
+export class Atleta {
+    static #idStatic = 0;
+    #id;
     #nome;
     #cpf;
     #idade;
@@ -15,13 +15,13 @@ export class Pessoa {
         this.#idade = idade;
         this.#dtNascimento = dtNasc;
 
-        this.#idPessoa = Pessoa.#idPessoaStatic;
-        Pessoa.#idPessoaStatic++;
+        this.#id = Atleta.#idStatic;
+        Atleta.#idStatic++;
     }
 
 
-    static get idPessoa(){
-        return this.idPessoa;
+    static get id(){
+        return this.id;
     }
 
 
@@ -66,8 +66,8 @@ export class Pessoa {
             "\nNome das corridas: " + this.nomeCorridasPassadas);
     }
 
-    historico(pessoa, nomeCorrida, tipoCorrida) {
-        if(pessoa == this.idPessoa){
+    historico(atleta, nomeCorrida, tipoCorrida) {
+        if(atleta == this.id){
             this.#qtdCorridasPassadas++;
             this.#nomeCorridasPassadas.push(nomeCorrida);
             this.#tipoCorridasPassadas.push(tipoCorrida);

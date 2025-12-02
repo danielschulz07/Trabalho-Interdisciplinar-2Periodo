@@ -1,4 +1,3 @@
-import { Pessoa } from "./Pessoa.js";
 export class Competicao {
     static #idStatic = 0;
     #id;
@@ -24,8 +23,8 @@ export class Competicao {
         return this.#id;
     }
 
-    historico(pessoa){
-        pessoa.historico(pessoa.id,this.#nome);
+    historico(atleta){
+        atleta.historico(atleta.id,this.#nome);
     }
 
     toString() {

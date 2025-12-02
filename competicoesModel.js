@@ -1,11 +1,11 @@
-import { Pessoa } from "./Pessoa.js";
+import { Atleta } from "./Atleta.js";
 import { Competicao } from "./Competicao.js";
 import { TrailRunning } from "./TrailRunning.js";
 import { Maratona } from "./Maratona.js";
 
 
-var teste = new Pessoa(1213,3123,123,123);
-var teste2 = new Pessoa("zxc","zxcz","zxc","zxc");
+var teste = new Atleta(1213,3123,123,123);
+var teste2 = new Atleta("zxc","zxcz","zxc","zxc");
 
 
 export var vetPessoa = [teste, teste2];
