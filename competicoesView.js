@@ -60,7 +60,7 @@ let cpf = inCpf.value;
         outSaida.textContent = "Deve ser preenchido a competição que deseja participar";
         nomeCompeticaoSlc.focus();
     } else {
-        if (CompeticoesControl.adicionarPessoa(nome, dtNascPessoa, idade, cpf, opcao, nomeCompeticaoSlc) == true) {
+        if (CompeticoesControl.adicionarCompetidor(nome, dtNascPessoa, idade, cpf, opcao, nomeCompeticaoSlc) == true) {
             outSaida.style.color = "blue";
             outSaida.textContent = "O novo produto foi acrescentado com sucesso!";
         } else {
