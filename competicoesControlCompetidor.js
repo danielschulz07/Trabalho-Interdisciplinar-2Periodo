@@ -6,7 +6,7 @@ export function adicionarPessoa(nome, dtDataNasc, idade, cpf, opcao, nomeCompeti
 
 
 
-    produto = new 
+   // produto = new 
 
 
 
