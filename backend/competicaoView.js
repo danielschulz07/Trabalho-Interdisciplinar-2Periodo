@@ -52,7 +52,7 @@ if (btInscrever) {
             slcOpcaoCorrida.focus();
         } else {
             outSaida.style.color = "black";
-            outSaida.innerHTML = AtletaControl.adicionar(nome, dtNascPessoa, idade, cpf, opcao);
+            outSaida.innerHTML = AtletaControl.adicionar(nome, dtNascPessoa, idade, cpf, modalidade);
             inNome.value = "";
             inIdade.value = "";
             inCpf.value = "";
@@ -76,7 +76,7 @@ btnExcluir.addEventListener('click', function () {
 
 btnBuscar.addEventListener('click', function () {
     let nome = (inNome.value).toUpperCase();
-    let opcao = slcOpcaoCorrida.value;
+    let modalidade = slcOpcaoCorrida.value;
     let idade = Number(inIdade.value);
     let cpf = inCpf.value;
 
@@ -90,14 +90,14 @@ btnBuscar.addEventListener('click', function () {
             nome: inNome.textContent,
             idade: Number(inIdade.textContent),
             cpf: inCpf.textContent,
-            opcao: slcOpcaoCorrida.textContent
+            modalidade: slcOpcaoCorrida.textContent
         });
 
         if (atletaEncontrado) {
             inNome.value = atletaEncontrado.nome;
             inIdade.value = atletaEncontrado.idade;
             inCpf.value = atletaEncontrado.cpf;
-            slcOpcaoCorrida.value = atletaEncontrado.opcao;
+            slcOpcaoCorrida.value = atletaEncontrado.modalidade;
         } else {
             outSaida.textContent = "Atleta não existe no sistema!";
         }

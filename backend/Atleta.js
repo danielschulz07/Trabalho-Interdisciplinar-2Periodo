@@ -4,13 +4,15 @@ export class Atleta {
     #nome;
     #idade;
     #cpf;
-    #opcao
+    #nacionalidade;
+    #modalidade;
 
-    constructor (nome, idade, cpf, opcao) {
+    constructor (nome, idade, cpf, nacionalidade, modalidade) {
         this.#nome = nome;
         this.#idade = idade;
         this.#cpf = cpf;
-        this.#opcao = opcao;
+        this.#nacionalidade = nacionalidade;
+        this.#modalidade = modalidade;
 
         this.#id = Atleta.#idStatic;
         Atleta.#idStatic++;
@@ -43,14 +45,14 @@ export class Atleta {
     }
     
     get opcao(){
-        return this.#opcao;
+        return this.#modalidade;
     }
 
     toString() {
         return ("\nNome: " + this.#nome +
         "\nCPF: " + this.#cpf +
         "\nIdade: " + this.#idade +
-        "\nOpção Corrida: " + this.#opcao);
+        "\nOpção Corrida: " + this.#modalidade);
     } 
 
     relatorio() {
