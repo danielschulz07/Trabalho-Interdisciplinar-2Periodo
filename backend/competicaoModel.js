@@ -18,3 +18,4 @@ var trail = new TrailRunning("zxc","zxc","zxc","zxc","zxc","zxc","zxc");
 
 export var vetCorrida = [cor,cor2,mar1,trail];
 
+export var vetCompetidor = [];

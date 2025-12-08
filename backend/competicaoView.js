@@ -1,4 +1,6 @@
 import * as AtletaControl from "./atletaControl.js";
+import { pesquisarAtleta } from "./atletaModel.js";
+import { pesquisarCompeticao } from "./competicaoControl.js";
 
 const inNome = document.getElementById("inNome");
 const inIdade = document.getElementById("inIdade");
@@ -275,6 +277,24 @@ if (btCadastrarCorrida) {
             }
         }
     });
+}
+
+if(btInscreverAtletaComp){
+    btInscreverAtletaComp.addEventListener('click', function(){
+        let nome = (inNome.value).toUpperCase();
+        let cpf = inCpf.value;
+        let competicao = inNomeCorridaSelecionada.value;
+        //criar identificador
+        //classificacao?
+
+        if(pesquisarAtleta(nome) != null && pesquisarCompeticao(competicao) != null){
+            vincularCompetidor(idAtleta,idCompeticao);//identificador e classificacao
+            
+        }
+        
+
+
+    })
 }
 /*
 btInscreverAtletaComp.addEventListener('click', function () {

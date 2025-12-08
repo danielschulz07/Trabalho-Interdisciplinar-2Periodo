@@ -1,4 +1,6 @@
 import { Competicao } from "./Competicao.js";
+import { Competidor } from "./Competidor.js";
+import { Model } from "./competicaoModel.js";
 
  const vetCompeticoes = [];
 
@@ -18,4 +20,9 @@ export function adicionarCompeticao(nomeCompeticao, distancia, dataCorrida, qtdC
         return true;
     }
     return false;
+}
+
+export function vincularCompetidor(idAtleta, idCompeticao){
+    let competidor = new Competidor(idAtleta, idCompeticao);
+    Model.vetCompetidor.push(competidor);
 }
