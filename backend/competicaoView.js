@@ -1,9 +1,9 @@
 import * as AtletaControl from "./atletaControl.js";
 
 const inNome = document.getElementById("inNome");
-const dtDataNasc = document.getElementById("dtDataNasc");
 const inIdade = document.getElementById("inIdade");
 const inCpf = document.getElementById("inCpf");
+const inNacionalidade = document.getElementById("inNacionalidade");
 const inNomeCorridaSelecionada = document.getElementById("inNomeCorridaSelecionada");
 const btInscrever = document.getElementById("btInscrever");
 const outSaida = document.getElementById("outSaida");
@@ -30,19 +30,14 @@ if (btInscrever) {
     btInscrever.addEventListener('click', function () {
 
         let nome = (inNome.value).toUpperCase();
-        let opcao = slcOpcaoCorrida.value;
-        let dtNascPessoa = new Date(dtDataNasc.value);
         let idade = Number(inIdade.value);
         let cpf = inCpf.value;
+        let nacionalidade = inNacionalidade.value;
         
         if (nome == "") {
             outSaida.style.color = "red";
             outSaida.textContent = "O campo Nome deve ser preenchido!";
             inNome.focus();
-        } else if (!dtDataNasc.value || isNaN(new Date(dtDataNasc.value).getTime())) {
-            outSaida.style.color = "red";
-            outSaida.textContent = "Deve ser preenchido uma data válida";
-            dtDataNasc.focus();
         } else if (idade == "" || idade < 18) {
             outSaida.style.color = "red";
             outSaida.textContent = "Deve ser preenchido uma idade válida";
@@ -59,7 +54,6 @@ if (btInscrever) {
             outSaida.style.color = "black";
             outSaida.innerHTML = AtletaControl.adicionar(nome, dtNascPessoa, idade, cpf, opcao);
             inNome.value = "";
-            dtDataNasc.value = "";
             inIdade.value = "";
             inCpf.value = "";
             slcOpcaoCorrida.value = "";
@@ -83,7 +77,6 @@ btnExcluir.addEventListener('click', function () {
 btnBuscar.addEventListener('click', function () {
     let nome = (inNome.value).toUpperCase();
     let opcao = slcOpcaoCorrida.value;
-    let dtNascPessoa = new Date(dtDataNasc.value);
     let idade = Number(inIdade.value);
     let cpf = inCpf.value;
 
@@ -93,65 +86,23 @@ btnBuscar.addEventListener('click', function () {
         inNome.focus();
         return;
     } else {
-
-        let resposta = AtletaControl.modificar(nome, {
+        let atletaEncontrado = AtletaControl.modificar(nome, {
             nome: inNome.textContent,
-            dtNascPessoa: dtDataNasc.textContent,
             idade: Number(inIdade.textContent),
             cpf: inCpf.textContent,
             opcao: slcOpcaoCorrida.textContent
         });
 
-        if (resposta.erro) {
-            outSaida.textContent = resposta.erro;
-            inNome.textContent = nome;
-            dtDataNasc.textContent = dtNascPessoa;
-            inIdade.textContent = idade;
-            inCpf.textContent = cpf;
-
+        if (atletaEncontrado) {
+            inNome.value = atletaEncontrado.nome;
+            inIdade.value = atletaEncontrado.idade;
+            inCpf.value = atletaEncontrado.cpf;
+            slcOpcaoCorrida.value = atletaEncontrado.opcao;
         } else {
-            outSaida.textContent = "Atleta atualizado com sucesso!";
+            outSaida.textContent = "Atleta não existe no sistema!";
         }
-        //outSaida.style.color = "black";
-        //outSaida.innerHTML = AtletaControl.modificar(nome, dtNascPessoa, idade, cpf, opcao);
-        //inNome.textContent = 
+
     }
-
-
-    
-    
-    
-    
-    //else{
-    //    outSaida.style.color = "black";
-     //   outSaida.innerHTML = AtletaControl.modificar(nome, dtNascPessoa, idade, cpf, opcao);
-  //  }
- /*
-
-                if (mes < 1 || mes > 12) {
-                outResultado.style.color = "red";
-                outResultado.textContent = "Ops, digite um mês de 1-12!";
-                inMes.focus();
-            } else {
-                if (inQtd.value == "" || quantidade < 0) {
-                    outResultado.style.color = "red";
-                    outResultado.textContent = "Para alterar quantidade vendida, o campo Quantidade deve ser preenchido com valor >= 0 !";
-                    inQtd.focus();
-                } else {
-                    let produto = ArmazemControlProduto.alterarProduto(descrProduto, mes, quantidade, cnpj);
-                    if (produto != null) {
-                        outResultado.style.color = "blue";
-                        outResultado.textContent = "O produto " + produto.descricao + " foi alterado no mês " + mes + " tendo como quantidade vendida : " + produto.getQtdVendasMes(mes);
-                    } else {
-                        outResultado.style.color = "red";
-                        outResultado.textContent = "O produto que deseja alterar não está cadastrado";
-                    }
-                }
-            }
-
-
-            break;
-            */
 })
 
 

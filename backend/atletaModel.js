@@ -1,6 +1,8 @@
 import { Atleta } from "./Atleta.js";
 
-const vetAtletas = [];
+const ate = new Atleta("dada", "20", 12345678910, "OpcTrail")
+const vetAtletas = [ate];
+console.log(ate)
 
 
 export function pesquisarAtleta(nome){
@@ -8,11 +10,11 @@ export function pesquisarAtleta(nome){
     return (indAtleta == -1) ? null : vetAtletas[indAtleta];
 }
 
-export function inserirAtleta(nome, dtNascPessoa, idade, cpf, opcao){
+export function inserirAtleta(nome, idade, cpf, opcao){
     let atletaEncontrado = pesquisarAtleta(nome);
 
     if(atletaEncontrado == null){
-        let atleta = new Atleta(nome, dtNascPessoa, idade, cpf, opcao);
+        let atleta = new Atleta(nome, idade, cpf, opcao);
         vetAtletas.push(atleta);
         console.log(vetAtletas);
         return true;
@@ -30,40 +32,13 @@ export function excluirAtleta(nome){
     return false;
 }
 
-export function alterarAtleta(nome){
+export function alterarAtleta(nome) {
     let atletaEncontrado = pesquisarAtleta(nome);
 
-    if(atletaEncontrado != null){
-        
+    if (atletaEncontrado != null) {
         return atletaEncontrado;
-       //atletaEncontrado.dtNascPessoa = novosDados.dtNascPessoa;
-      //  atletaEncontrado.idade = novosDados.idade;
-        //atletaEncontrado.cpf = novosDados.cpf;
-       // atletaEncontrado.opcao = novosDados.opcao;        
     }
     return false;
 }
 
 
-
-
-/*
-
-let atleta = AtletaControl.pesquisar(nome);
-
-if (atleta != null) {
-    // Aqui atleta é um OBJETO
-    outSaida.style.color = "green";
-    outSaida.textContent = "Atleta encontrado!";
-
-    // Se quiser exibir os dados na tela:
-    outSaida.innerHTML =
-        "Nome: " + atleta.nome + "<br>" +
-        "Nascimento: " + atleta.dtNascPessoa + "<br>" +
-        "Idade: " + atleta.idade + "<br>" +
-        "CPF: " + atleta.cpf + "<br>" +
-        "Opção: " + atleta.opcao;
-
-
-
-*/

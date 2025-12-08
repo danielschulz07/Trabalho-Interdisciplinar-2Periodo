@@ -2,7 +2,6 @@ export class Atleta {
     static #idStatic = 0;
     #id;
     #nome;
-    #dataNascimento;
     #idade;
     #cpf;
     #opcao
@@ -10,9 +9,8 @@ export class Atleta {
     #nomeCorridasPassadas = [];
     #tipoCorridasPassadas = [];
 
-    constructor (nome, dataNascimento, idade, cpf, opcao) {
+    constructor (nome, idade, cpf, opcao) {
         this.#nome = nome;
-        this.#dataNascimento = dataNascimento;
         this.#idade = idade;
         this.#cpf = cpf;
         this.#opcao = opcao;
@@ -36,10 +34,6 @@ export class Atleta {
         if (nome.length != 0){
             this.#nome = nome;
         }
-    }
-    
-    get dataNascimento(){
-        return this.#dataNascimento
     }
 
     get idade(){
@@ -65,7 +59,9 @@ export class Atleta {
 
     toString() {
         return ("\nNome: " + this.#nome +
-        "\nCPF: " + this.#cpf);
+        "\nCPF: " + this.#cpf +
+        "\nIdade: " + this.#idade +
+        "\nOpção Corrida: " + this.#opcao);
     } 
 
     relatorio() {
