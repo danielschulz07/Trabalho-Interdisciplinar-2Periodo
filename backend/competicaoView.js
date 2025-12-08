@@ -288,6 +288,7 @@ if(btInscreverAtletaComp){
         let nome = (inNome.value).toUpperCase();
         let competicao = inNomeCorridaSelecionada.value;
         let identificador = inIdentificador.value;
+        let colocacao = inColocacao.value;
         labelColocacao.style.display = "none";
         inColocacao.style.display = "none";
         //classificacao?
@@ -295,6 +296,7 @@ if(btInscreverAtletaComp){
         if(CompeticaoControl.checarVetCompetidor(AtletaControl.modificar(nome).id, CompeticaoControl.pesquisarCompeticao(competicao).id) == true){
             labelColocacao.style.display = "block";
             inColocacao.style.display = "block";
+            CompeticaoControl.colocacaoCompetidor(AtletaControl.modificar(nome).id, CompeticaoControl.pesquisarCompeticao(competicao).id, colocacao);
         }else if(AtletaControl.modificar(nome) != null && CompeticaoControl.pesquisarCompeticao(competicao) != null){
             let idAtleta = AtletaControl.modificar(nome);
             let idCompeticao = CompeticaoControl.pesquisarCompeticao(competicao);

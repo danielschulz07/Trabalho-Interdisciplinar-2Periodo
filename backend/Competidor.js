@@ -18,4 +18,15 @@ export class Competidor {
     get idCompeticao(){
         return this.#idCompeticao;
     }
+
+
+    get classificacao(){
+        return this.#classificacao;
+    }
+    
+    set classificacao(classificacao){
+        if(classificacao > 0){
+            this.#classificacao = classificacao;
+        }
+    }
 }

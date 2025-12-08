@@ -38,3 +38,9 @@ export function checarVetCompetidor(idAtleta, idCompeticao){
         let indCompetidor = Model.vetCompetidor.findIndex(objProd => objProd.idAtleta == idAtleta && objProd.idCompeticao == idCompeticao);
     return (indCompetidor == -1) ? null : true;
 }
+
+export function colocacaoCompetidor(idAtleta, idCompeticao, colocacao){
+    let indCompetidor = Model.vetCompetidor.findIndex(objProd => objProd.idAtleta == idAtleta && objProd.idCompeticao == idCompeticao);
+    Model.vetCompetidor[indCompetidor].colocacao = colocacao;
+    console.log(Model.vetCompetidor[indCompetidor]);
+}
