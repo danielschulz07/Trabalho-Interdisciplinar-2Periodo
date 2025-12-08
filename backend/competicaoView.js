@@ -62,14 +62,15 @@ if (btInscrever) {
             inIdade.value = "";
             inCpf.value = "";
             inNacionalidade.value = "";
-            slcOpcaoCorrida.value = "";
+            slcOpcaoCorrida.value = "Selecione a Modalidade da Competição";
         }
     })
 }
 
-btExcluir.addEventListener('click', function () {
+if(btExcluir){
+    btExcluir.addEventListener('click', function () {
     let nome = (inNome.value).toUpperCase();
-
+    
     if(nome == ""){
         outSaida.style.color = "red";
         outSaida.textContent = "Erro! O campo nome deve ser preenchido";
@@ -81,15 +82,16 @@ btExcluir.addEventListener('click', function () {
         inIdade.value = "";
         inCpf.value = "";
         inNacionalidade.value = "";
-        slcOpcaoCorrida.value = "";
+        slcOpcaoCorrida.value = "Selecione a Modalidade da Competição";
+        btCancelar.style.display = "none";
     }
 })
+}
 
+
+if(btBuscar){
 btBuscar.addEventListener('click', function () {
     let nome = (inNome.value).toUpperCase();
-    let opcao = slcOpcaoCorrida.value;
-    let idade = Number(inIdade.value);
-    let cpf = inCpf.value;
 
     if (nome == "") {
         outSaida.style.color = "red";
@@ -112,14 +114,16 @@ btBuscar.addEventListener('click', function () {
             slcOpcaoCorrida.value = atletaEncontrado.modalidade;
             btInscrever.style.display = "none"; 
             btAlterar.style.display = "block"; 
-            btCancelar.style.display = "block";
+            btCancelar.style.display = "inline";
             idBuscar.value = atletaEncontrado.id;
         } else {
             outSaida.textContent = "Atleta não existe no sistema!";
         }
     }
 })
+}
 
+if(btAlterar){
 btAlterar.addEventListener('click', function () {
         let nome = (inNome.value).toUpperCase();
         let idade = Number(inIdade.value);
@@ -155,28 +159,29 @@ btAlterar.addEventListener('click', function () {
             inIdade.value = "";
             inCpf.value = "";
             inNacionalidade.value = "";
-            slcOpcaoCorrida.value = "";
+            slcOpcaoCorrida.value = "Selecione a Modalidade da Competição";
             idBuscar.textContent = ""; 
         }
         btInscrever.style.display = "block"; 
         btAlterar.style.display = "none"; 
         btCancelar.style.display = "none";
 })
+}
 
+if(btCancelar){
 btCancelar.addEventListener("click", function () {
     inNome.value = "";
     inIdade.value = "";
     inCpf.value = "";
     inNacionalidade.value = "";
-    slcOpcaoCorrida.value = "";
+    slcOpcaoCorrida.value = "Selecione a Modalidade da Competição";
     idBuscar.textContent = ""; 
-    
     
     btInscrever.style.display = "block"; 
     btAlterar.style.display = "none"; 
     btCancelar.style.display = "none";
 })
-
+}
 
 if (btCadastrarCorrida) {
     btCadastrarCorrida.addEventListener('click', function () {

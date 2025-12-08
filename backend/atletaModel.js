@@ -49,8 +49,6 @@ export function procurarAtleta(nome) {
 
 
 export function alterarAtleta(id, nome, idade, cpf, nacionalidade, modalidade) {
-
-
     if (id != -1) {
         vetAtletas[id].nome = nome;
         vetAtletas[id].idade = idade;
