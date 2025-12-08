@@ -15,11 +15,11 @@ export function pesquisarAtletaID(nome){
     return (indAtleta == -1) ? null : indAtleta;
 }
 
-export function inserirAtleta(nome, idade, cpf, nacionalidade, modadalidade){
+export function inserirAtleta(nome, idade, cpf, nacionalidade, modalidade){
     let atletaEncontrado = pesquisarAtleta(nome);
 
     if(atletaEncontrado == null){
-        let atleta = new Atleta(nome, idade, cpf, nacionalidade, modadalidade);
+        let atleta = new Atleta(nome, idade, cpf, nacionalidade, modalidade);
         vetAtletas.push(atleta);
         console.log(vetAtletas);
         return true;
@@ -57,3 +57,7 @@ export function alterarAtleta(id, nome, idade, cpf, nacionalidade, modalidade) {
         vetAtletas[id].modalidade = modalidade;
         }
     }
+
+    export function _getLista() {
+    return vetAtletas;
+}

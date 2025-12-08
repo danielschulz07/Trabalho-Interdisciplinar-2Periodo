@@ -310,7 +310,82 @@ btInscreverAtletaComp.addEventListener('click', function () {
     })
     */
 
+import * as control from "./atletaControl.js";
+import * as model from "./atletaModel.js";
 
+const tabela = document.querySelector("#tabelaCompetidores tbody");
+
+
+window.onload = () => {
+    atualizarTabela();
+};
+
+
+document.querySelector("#btInscrever").addEventListener("click", adicionarAtleta); 
+
+function adicionarAtleta () {
+    let nome = document.querySelector("#inNome").value;
+    let idade = Number(document.querySelector("#inIdade").value);
+    let cpf = document.querySelector("#inCpf").value;
+    let nac = document.querySelector("#inNacionalidade").value;
+    let modalidade = document.querySelector("#slcOpcaoCorrida").value;
+
+    let msg = control.adicionar(nome, idade, cpf, nac, modalidade);
+    alert(msg);
+
+    atualizarTabela();
+    limparCampos();
+};
+
+
+function atualizarTabela() {
+    tabela.innerHTML = ""; 
+
+    const lista = model._getLista(); 
+
+    lista.forEach((atleta) => {
+
+        if (!atleta || !atleta.nome) return;
+
+        let linha = document.createElement("tr");
+
+        linha.innerHTML = `
+            <td>${atleta.nome}</td>
+            <td>${atleta.idade}</td>
+            <td>${atleta.cpf}</td>
+            <td>${atleta.modalidade}</td>
+            <td>${atleta.nacionalidade}</td>
+
+            <td>
+                <button class="btnExcluir" data-nome="${atleta.nome}">Excluir</button>
+            </td>
+        `;
+
+        tabela.appendChild(linha);
+    });
+
+    adicionarEventosExcluir();
+}
+
+
+function adicionarEventosExcluir() {
+    document.querySelectorAll(".btnExcluir").forEach(btn => {
+        btn.addEventListener("click", () => {
+            let nome = btn.dataset.nome;
+            control.excluir(nome);
+            atualizarTabela();
+        });
+    });
+}
+
+
+function limparCampos() {
+    document.querySelector("#inNome").value = "";
+    document.querySelector("#inIdade").value = "";
+    document.querySelector("#inCpf").value = "";
+    document.querySelector("#inNacionalidade").value = "";
+    document.querySelector("#slcOpcaoCorrida").value = "Selecione a Modalidade da Competição";
+}
 
 
 
