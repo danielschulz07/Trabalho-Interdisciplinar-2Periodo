@@ -23,10 +23,12 @@
                 <h2>Vincular Atleta a Competição</h2>
                 <label>Nome do corredor</label>
                 <input id="inNome" type="text" placeholder="Nome completo">
-                <label>CPF</label>
-                <input id="inCpf" type="number" placeholder="CPF">
                 <label>Escolha a Competição que Participará</label>
                 <input id="inNomeCorridaSelecionada" placeholder="Nome da Corrida">
+                <label>Escolha o dentificador do atleta nessa corrida</label>
+                <input id="inIdentificador" type="number" placeholder="Identificador">
+                <label id="labelColocacao" style="display: none;">Escolha a colocação do competidor</label>
+                <input id="inColocacao" type="number" placeholder="Colocação" style="display: none;">
                 <input class="button" type="button" id="btInscreverAtletaComp" value="Inscrever Atleta a Competição">
                 <p id="outSaida"></p>
             </div>

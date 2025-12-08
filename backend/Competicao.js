@@ -23,6 +23,10 @@ export class Competicao {
         return this.#id;
     }
 
+    get nome(){
+        return this.#nome;
+    }
+
     historico(atleta){
         atleta.historico(atleta.id,this.#nome);
     }

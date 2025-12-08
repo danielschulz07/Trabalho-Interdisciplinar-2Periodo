@@ -10,4 +10,12 @@ export class Competidor {
         this.#identificador = identificador;
         this.#classificacao = classificacao;
     }
+
+    get idAtleta(){
+        return this.#idAtleta;
+    }
+
+    get idCompeticao(){
+        return this.#idCompeticao;
+    }
 }

@@ -1,6 +1,7 @@
 import * as AtletaControl from "./atletaControl.js";
-import { pesquisarAtleta } from "./atletaModel.js";
-import { pesquisarCompeticao } from "./competicaoControl.js";
+//import { pesquisarAtleta } from "./atletaModel.js";
+//import { pesquisarCompeticao } from "./competicaoControl.js";
+import * as CompeticaoControl from "./competicaoControl.js";
 
 const inNome = document.getElementById("inNome");
 const inIdade = document.getElementById("inIdade");
@@ -27,6 +28,9 @@ const slcOpcaoCorrida = document.getElementById("slcOpcaoCorrida");
 const slcOpcaoModalidade = document.getElementById("slcOpcaoModalidade");
 const slcOpcaoModalidadeTrail = document.getElementById("slcOpcaoModalidadeTrail");
 const slcOpcaoDificuldade = document.getElementById("slcOpcaoDificuldade");
+const inIdentificador = document.getElementById("inIdentificador");
+const labelColocacao = document.getElementById("labelColocacao");
+const inColocacao = document.getElementById("inColocacao");
 
 if (btInscrever) {
     btInscrever.addEventListener('click', function () {
@@ -282,14 +286,20 @@ if (btCadastrarCorrida) {
 if(btInscreverAtletaComp){
     btInscreverAtletaComp.addEventListener('click', function(){
         let nome = (inNome.value).toUpperCase();
-        let cpf = inCpf.value;
         let competicao = inNomeCorridaSelecionada.value;
-        //criar identificador
+        let identificador = inIdentificador.value;
+        labelColocacao.style.display = "none";
+        inColocacao.style.display = "none";
         //classificacao?
+        //IF DEBAIXO PROCURAR NO VETOR COMPETIDOR
+        if(CompeticaoControl.checarVetCompetidor(AtletaControl.modificar(nome).id, CompeticaoControl.pesquisarCompeticao(competicao).id) == true){
+            labelColocacao.style.display = "block";
+            inColocacao.style.display = "block";
+        }else if(AtletaControl.modificar(nome) != null && CompeticaoControl.pesquisarCompeticao(competicao) != null){
+            let idAtleta = AtletaControl.modificar(nome);
+            let idCompeticao = CompeticaoControl.pesquisarCompeticao(competicao);
+            CompeticaoControl.vincularCompetidor(idAtleta.id,idCompeticao.id, identificador);//identificador e classificacao
 
-        if(pesquisarAtleta(nome) != null && pesquisarCompeticao(competicao) != null){
-            vincularCompetidor(idAtleta,idCompeticao);//identificador e classificacao
-            
         }
         
 
