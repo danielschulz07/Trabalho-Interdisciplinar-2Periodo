@@ -10,10 +10,10 @@ export function pesquisarAtleta(nome){
     return (indAtleta == -1) ? null : vetAtletas[indAtleta];
 }
 
-export function pesquisarAtletaID(nome){
-    let indAtleta = vetAtletas.findIndex(objProd => objProd.nome == nome);
-    return (indAtleta == -1) ? null : indAtleta;
-}
+//export function pesquisarAtletaID(nome){
+//    let indAtleta = vetAtletas.findIndex(objProd => objProd.nome == nome);
+//    return (indAtleta == -1) ? null : indAtleta;
+//}
 
 export function inserirAtleta(nome, idade, cpf, nacionalidade, modadalidade){
     let atletaEncontrado = pesquisarAtleta(nome);

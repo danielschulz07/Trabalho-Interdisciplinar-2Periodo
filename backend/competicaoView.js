@@ -1,4 +1,6 @@
 import * as AtletaControl from "./atletaControl.js";
+//import { pesquisarAtleta } from "./atletaModel.js";
+//import { pesquisarCompeticao } from "./competicaoControl.js";
 import * as CompeticaoControl from "./competicaoControl.js";
 
 const inNome = document.getElementById("inNome");
@@ -26,6 +28,9 @@ const slcOpcaoCorrida = document.getElementById("slcOpcaoCorrida");
 const slcOpcaoModalidade = document.getElementById("slcOpcaoModalidade");
 const slcOpcaoModalidadeTrail = document.getElementById("slcOpcaoModalidadeTrail");
 const slcOpcaoDificuldade = document.getElementById("slcOpcaoDificuldade");
+const inIdentificador = document.getElementById("inIdentificador");
+const labelColocacao = document.getElementById("labelColocacao");
+const inColocacao = document.getElementById("inColocacao");
 
 if (btInscrever) {
     btInscrever.addEventListener('click', function () {
@@ -234,7 +239,7 @@ if (btCadastrarCorrida) {
                 outSaida.textContent = "O campo Quantidade de CheckPoint deve ser preenchido com um valor acima de 0!";
                 qtdCheckpointMaratona.focus();
             } else {
-                if (CompeticaoControl.adicionar(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade) == true) {
+                if (CompeticaoControl.adicionarCompeticao(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade) == true) {
                     outSaida.style.color = "blue";
                     outSaida.textContent = "O novo produto foi acrescentado com sucesso!";
                 } else {
@@ -276,6 +281,32 @@ if (btCadastrarCorrida) {
             }
         }
     });
+}
+
+if(btInscreverAtletaComp){
+    btInscreverAtletaComp.addEventListener('click', function(){
+        let nome = (inNome.value).toUpperCase();
+        let competicao = inNomeCorridaSelecionada.value;
+        let identificador = inIdentificador.value;
+        let colocacao = inColocacao.value;
+        labelColocacao.style.display = "none";
+        inColocacao.style.display = "none";
+        //classificacao?
+        //IF DEBAIXO PROCURAR NO VETOR COMPETIDOR
+        if(CompeticaoControl.checarVetCompetidor(AtletaControl.modificar(nome).id, CompeticaoControl.pesquisarCompeticao(competicao).id) == true){
+            labelColocacao.style.display = "block";
+            inColocacao.style.display = "block";
+            CompeticaoControl.colocacaoCompetidor(AtletaControl.modificar(nome).id, CompeticaoControl.pesquisarCompeticao(competicao).id, colocacao);
+        }else if(AtletaControl.modificar(nome) != null && CompeticaoControl.pesquisarCompeticao(competicao) != null){
+            let idAtleta = AtletaControl.modificar(nome);
+            let idCompeticao = CompeticaoControl.pesquisarCompeticao(competicao);
+            CompeticaoControl.vincularCompetidor(idAtleta.id,idCompeticao.id, identificador);//identificador e classificacao
+
+        }
+        
+
+
+    })
 }
 /*
 btInscreverAtletaComp.addEventListener('click', function () {

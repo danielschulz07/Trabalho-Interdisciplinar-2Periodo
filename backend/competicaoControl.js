@@ -1,29 +1,46 @@
-import * as vetCompeticoes from "./competicaoModel.js";
+import { Competicao } from "./Competicao.js";
+import { Competidor } from "./Competidor.js";
+import * as Model from "./competicaoModel.js";
 
-export function adicionar(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade) {
-    if (vetCompeticoes.inserirCompeticao(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade) == true) {
-        return "Atleta inserido com sucesso!"
+let comp = new Competicao("zxc","zxc","zxc","zxc","zxc");
+const vetCompeticoes = [comp];
+
+export function pesquisarCompeticao(nomeCompeticao){
+    let indCompeticao = vetCompeticoes.findIndex(objProd => objProd.nome == nomeCompeticao);
+    return (indCompeticao == -1) ? null : vetCompeticoes[indCompeticao];
+}
+
+//export function pesquisarCompeticaoID(nomeCompeticao){
+//   let indCompeticao = vetCompeticoes.findIndex(objProd => objProd.nomeCompeticao == nomeCompeticao);
+//    return (indCompeticao == -1) ? null : indCompeticao;
+//}
+
+
+export function adicionarCompeticao(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade){
+    let competicao = pesquisarCompeticao(nomeCompeticao);
+
+    if(competicao == null){
+        competicao = new Competicao(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade)
+        vetCompeticoes.push(competicao);
+        console.log(vetCompeticoes);
+        return true;
     }
-    return "Erro! O Atleta " + nome + " já estava cadastrado!"
-}
-/*
-
-export function excluir(nome) {
-    if (vetAtletas.excluirAtleta(nome, vetAtletas) == true) {
-        return "Atleta excluido com sucesso!";
-    }
-    return "O Atleta não existe para excluir!";
+    return false;
 }
 
-export function modificar(nome) {
-    let atletaEncontrado = vetAtletas.procurarAtleta(nome)
-    return atletaEncontrado;
+export function vincularCompetidor(idAtleta, idCompeticao, identificador){
+    let competidor = new Competidor(idAtleta, idCompeticao, identificador);
+    Model.vetCompetidor.push(competidor);
+    //return console.log(Model.vetCompetidor[0]);
 }
 
-export function alterar(id, nome, idade, cpf, nacionalidade, modalidade){
-        let atletaEncontrado = vetAtletas.alterarAtleta(id, nome, idade, cpf, nacionalidade, modalidade);
-    return atletaEncontrado;
-
+export function checarVetCompetidor(idAtleta, idCompeticao){
+        let indCompetidor = Model.vetCompetidor.findIndex(objProd => objProd.idAtleta == idAtleta && objProd.idCompeticao == idCompeticao);
+    return (indCompetidor == -1) ? null : true;
 }
 
-*/
+export function colocacaoCompetidor(idAtleta, idCompeticao, colocacao){
+    let indCompetidor = Model.vetCompetidor.findIndex(objProd => objProd.idAtleta == idAtleta && objProd.idCompeticao == idCompeticao);
+    Model.vetCompetidor[indCompetidor].colocacao = colocacao;
+    console.log(Model.vetCompetidor[indCompetidor]);
+}
