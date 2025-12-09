@@ -308,11 +308,26 @@ if(btInscreverAtletaComp){
 
     })
 }
-const tabelaCompetidores = document.getElementById("tabelaCompetidores");
-const tabelaCorridas = document.getElementById("tabelaCorridas");
+//const tabelaCompetidores = document.getElementById("tabelaCompetidores");
+//const tabelaCorridas = document.getElementById("tabelaCorridas");
 
-//window.onload = CompeticaoControl.criarRelatorio();
-//window.onload = AtletaControl.criarRelatorio(); TRANSFORMAR EM FUNÇOES QUE PEGAM OS VALORES VAZIOS E FAZEM AS PROXIMAS FUNCOES
+window.onload = function(){
+    let nome = (inNome.value).toUpperCase();
+    let idade = Number(inIdade.value);
+    let cpf = inCpf.value;
+    let nacionalidade = inNacionalidade.value;
+    let modalidade = slcOpcaoCorrida.value;
+
+    AtletaControl.pesquisarAtleta(nome, idade, cpf, nacionalidade, modalidade);
+
+    let nomeCompeticao = (inNomeCorrida.value).toUpperCase();
+    let distancia = Number(inDistancia.value);
+    let dataCorrida = "";
+    let qtdCompetidores = Number(inQtdCompetidores.value);
+    let opcaoModalidade = slcOpcaoModalidade.value;
+
+    CompeticaoControl.pesquisarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade);
+}
 
 
 
