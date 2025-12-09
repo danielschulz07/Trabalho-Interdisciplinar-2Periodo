@@ -100,6 +100,8 @@ export function criarRelatorio(i){
 export function filtrarAtleta(nome, idade, cpf, nacionalidade, modalidade){
     tabelaCompetidores.textContent = "";
     for (let i = 0; i < vetAtletas.length; i++) {
+
+        
         if(
             (vetAtletas[i].nome.toUpperCase().includes(nome)) &&
             (vetAtletas[i].idade == idade || idade == 0) &&

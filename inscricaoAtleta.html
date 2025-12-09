@@ -53,11 +53,16 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Idade</th>
-                        <th>CPF</th>
-                        <th>Nacionalidade</th>
-                        <th>Modalidade</th>
+                        <th>Nome <input id="inNome" type="text" placeholder="Nome"></th>
+                        <th>Idade <input id="inIdade" type="number" placeholder="Idade"></th>
+                        <th>CPF <input id="inCpf" type="number" placeholder="CPF"></th>
+                        <th>Nacionalidade <input id="inNacionalidade" type="text" placeholder="Nacionalidade"></th>
+                        <th>Modalidade <select name="opcao" id="slcOpcaoCorridaFiltro">
+                                        <option selected value="Qualquer modalidade">Qualquer modalidade</option>
+                                        <option value="TrailRunning">Trail Running</option>
+                                        <option value="Maratona">Maratona</option>
+                                    </select></th>
+                        <th><input class="button" type="button" id="btPesquisarAtleta" value="Pesquisar Atleta"></th>
                         <!--<th>Competição</th>
                         <th>Ações</th>-->
                     </tr>
