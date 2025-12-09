@@ -13,10 +13,10 @@ export var vetPessoa = [teste, teste2];
 
 var cor = new Competicao("zxcF",123,"12/10/2010",123,123);
 var cor2 = new Competicao("zxc","zxc","01/02/2004","zxc","zxc");
-var mar1 = new Maratona(123,123,123,123,123,123);
-var trail = new TrailRunning("zxc","zxc","zxc","zxc","zxc","zxc","zxc");
+var mar1 = new Maratona("mara",123,"11/11/1111",123,123,123);
+var trail = new TrailRunning("trail","zxc","22/12/2222",123,123,"zxc","zxc", "zxc");
 
-export var vetCorrida = [cor,cor2];
+export var vetCorrida = [cor,cor2,mar1,trail];
 
 export var vetCompetidor = [];
 
@@ -56,21 +56,64 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
         let vetDDMMAAAA = vetCorrida[i].data.split('/');
         let MMDDAAAA = vetDDMMAAAA[1] + '-' + vetDDMMAAAA[0] + '-' + vetDDMMAAAA[2];
         let dataVetCorrida = new Date(MMDDAAAA);
-        //alert(data);
-        //alert(MMDDAAAA);
-        //alert(dataVet);
-        
-        if(
+
+
+        switch(opcaoModalidade){
+            case "Qualquer modalidade":
+            if(
             (vetCorrida[i].nome.toUpperCase().includes(nomeCompeticao)) &&
              (vetCorrida[i].distancia <= distancia || distancia == 0) &&
               (dataVetCorrida <= data || data == "") &&
-               (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) //&&
-                //(vetCorrida[i].modalidade == modalidade || modalidade == "Qualquer modalidade")
-        )
+               (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0)
+            )
+            criarRelatorio(i);
+            break;
+            case "Maratona":
+            if(
+            (vetCorrida[i].nome.toUpperCase().includes(nomeCompeticao)) &&
+             (vetCorrida[i].distancia <= distancia || distancia == 0) &&
+              (dataVetCorrida <= data || data == "") &&
+               (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
+                (vetCorrida[i] instanceof Maratona == true)
+            )
+            criarRelatorio(i);
+            break;
+            case "TrailRunning":
+            if(
+            (vetCorrida[i].nome.toUpperCase().includes(nomeCompeticao)) &&
+             (vetCorrida[i].distancia <= distancia || distancia == 0) &&
+              (dataVetCorrida <= data || data == "") &&
+               (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
+                (vetCorrida[i] instanceof TrailRunning == true)
+            )
+            criarRelatorio(i);
+            break;
+        }
+
+
+
+     //   if(opcaoModalidade == "Maratona"){
+      //      opcaoModalidade == Maratona;
+   //     }
+        //console.log(opcaoModalidade);
+        //alert(data);
+        //alert(MMDDAAAA);
+        //alert(dataVet);
+        //if(mar1 instanceof Maratona == true){
+        //}
+        //console.log(mar1,Maratona);
+        //alert(opcaoModalidade);
+     //   if(
+    //        (vetCorrida[i].nome.toUpperCase().includes(nomeCompeticao)) &&
+    //         (vetCorrida[i].distancia <= distancia || distancia == 0) &&
+    //          (dataVetCorrida <= data || data == "") &&
+  //             (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
+//                (vetCorrida[i] instanceof Maratona == true || opcaoModalidade == "Qualquer modalidade")
+//        )
         
         
         
-        criarRelatorio(i);
+    //    criarRelatorio(i);
     }
 }
 //let tdAltimetria = document.createElement("td");

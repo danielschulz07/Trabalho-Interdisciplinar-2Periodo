@@ -6,7 +6,7 @@ export class Maratona extends Competicao{
     
 
     constructor(nome, distancia, data, limiteCorredores, qtdPontoApoio, altimetria){
-        super(data, limiteCorredores, nome, distancia);
+        super(nome, distancia,data, limiteCorredores);
         
         this.#qtdPontoApoio = qtdPontoApoio;
         this.#altimetria = altimetria;
