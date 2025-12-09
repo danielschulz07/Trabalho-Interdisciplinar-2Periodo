@@ -39,6 +39,7 @@ const inDistanciaFiltro = document.getElementById("inDistanciaFiltro");
 const dtCorridaFiltro = document.getElementById("dtCorridaFiltro");
 const inQtdCompetidoresFiltro = document.getElementById("inQtdCompetidoresFiltro");
 const inLocalFiltro = document.getElementById("inLocalFiltro");
+const slcOpcaoModalidadeFiltro = document.getElementById("slcOpcaoModalidadeFiltro");
 
 if (btInscrever) {
     btInscrever.addEventListener('click', function () {
@@ -370,19 +371,24 @@ window.onload = function(){
         
     }
     if(inQtdInscritos){
-        let nomeCompeticao = (inNomeCorrida.value).toUpperCase();
-        let distancia = Number(inDistancia.value);
+        let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
+        let distancia = Number(inDistanciaFiltro.value);
         let dataCorrida = "";
         if(dtCorrida.value == ""){
             dataCorrida = "";
         }else{
     
-            dataCorrida = new Date(dtCorrida.value + "T00:00:00");//Escolher horario?
+            dataCorrida = new Date(dtCorridaFiltro.value + "T00:00:00");//Escolher horario?
         }
-        let qtdCompetidores = Number(inQtdCompetidores.value);
-        let opcaoModalidade = slcOpcaoModalidade.value;
-        let local = inLocal.value;
-        let inscritos = Number(inQtdInscritos.value);
+        let qtdCompetidores = Number(inQtdCompetidoresFiltro.value);
+        let opcaoModalidade = slcOpcaoCorridaFiltro.value;
+        let local = inLocalFiltro.value;
+        let inscritos = null;
+        if(inQtdInscritos.value == ""){
+            inscritos = null;
+        } else {
+            inscritos = Number(inQtdInscritos.value);
+        }
 
         CompeticaoControl.pesquisarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local, inscritos);
     }
@@ -421,7 +427,13 @@ if(btPesquisarCorrida){
         let qtdCompetidores = Number(inQtdCompetidoresFiltro.value);
         let opcaoModalidade = slcOpcaoCorridaFiltro.value;
         let local = inLocalFiltro.value;
-        CompeticaoControl.pesquisarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local);
+        let inscritos = null;
+        if(inQtdInscritos.value == ""){
+            inscritos = null;
+        } else {
+            inscritos = Number(inQtdInscritos.value);
+        }
+        CompeticaoControl.pesquisarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local, inscritos);
     })
 }
 /*

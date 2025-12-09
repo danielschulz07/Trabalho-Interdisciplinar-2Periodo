@@ -9,6 +9,7 @@ var teste = new Atleta(1213,3123,123,123);
 var teste2 = new Atleta("zxc","zxcz","zxc","zxc");
 
 
+
 export var vetPessoa = [teste, teste2];
 
 var cor = new Competicao("zxcF",123,"12/10/2010",123,123);
@@ -18,9 +19,13 @@ var trail = new TrailRunning("trail","zxc","22/12/2222",123,123,"zxc","zxc", "zx
 
 export var vetCorrida = [cor,cor2,mar1,trail];
 
-export var vetCompetidor = [];
+var comp = new Competidor(1,2,1,1);
+var comp1 = new Competidor(0,2,2,3);
+var comp2 = new Competidor(2,3,50,100);
 
-export function criarRelatorio(i){
+export var vetCompetidor = [comp, comp1, comp2];
+
+export function criarRelatorio(i, qtdInscritos){
         //gerar tabela        TABELA  QUANTIDAD
         let trTabela = document.createElement("tr");
         
@@ -46,7 +51,7 @@ export function criarRelatorio(i){
 
         let tdLocal = document.createElement("td");
         tdLocal.textContent = vetCorrida[i].local;
-
+        
         
         //adicionar celulas a tabela
         trTabela.appendChild(tdNome);
@@ -56,15 +61,29 @@ export function criarRelatorio(i){
         trTabela.appendChild(tdTipoCorrida);
         trTabela.appendChild(tdLocal);
         
+
+        if(qtdInscritos != 0){
+            let tdQtdInscritos = document.createElement("td");
+            tdQtdInscritos.textContent = qtdInscritos;
+            trTabela.appendChild(tdQtdInscritos);
+        }
+
+        
         //trTabela.appendChild(tabelaCompetidores);
         
         //relatorioTitulosPorGenero.appendChild(thTabelaQuant);
         tabelaCorridas.appendChild(trTabela);
 }
 
-export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores, opcaoModalidade, local){
+export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores, opcaoModalidade, local, inscritos){
     tabelaCorridas.textContent = "";
-    for (let i = 0; i < vetCorrida.length; i++) {
+        for (let i = 0; i < vetCorrida.length; i++) {
+            let qtdInscritos = 0;
+            for(let j = 0; j<vetCompetidor.length; j++){
+                if(vetCompetidor[j].idCompeticao == vetCorrida[i].id){
+                qtdInscritos++;
+            }
+        }
         let vetDDMMAAAA = vetCorrida[i].data.split('/');
         let MMDDAAAA = vetDDMMAAAA[1] + '-' + vetDDMMAAAA[0] + '-' + vetDDMMAAAA[2];
         let dataVetCorrida = new Date(MMDDAAAA);
@@ -76,9 +95,11 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
             (vetCorrida[i].nome.toUpperCase().includes(nomeCompeticao)) &&
              (vetCorrida[i].distancia <= distancia || distancia == 0) &&
               (dataVetCorrida <= data || data == "") &&
-               (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) && (vetCorrida[i].local == local || local == "")
+               (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
+                (vetCorrida[i].local == local || local == "") && 
+               (qtdInscritos <= inscritos && inscritos != null|| inscritos == null)
             )
-            criarRelatorio(i);
+            criarRelatorio(i,qtdInscritos);
             break;
             case "Maratona":
             if(
@@ -86,9 +107,10 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
              (vetCorrida[i].distancia <= distancia || distancia == 0) &&
               (dataVetCorrida <= data || data == "") &&
                (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
-                (vetCorrida[i] instanceof Maratona == true) && (vetCorrida[i].local == local || local == "")
+                (vetCorrida[i] instanceof Maratona == true) && (vetCorrida[i].local == local || local == "") && 
+               (qtdInscritos <= inscritos && inscritos != null|| inscritos == null)
             )
-            criarRelatorio(i);
+            criarRelatorio(i,qtdInscritos);
             break;
             case "TrailRunning":
             if(
@@ -96,11 +118,14 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
              (vetCorrida[i].distancia <= distancia || distancia == 0) &&
               (dataVetCorrida <= data || data == "") &&
                (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
-                (vetCorrida[i] instanceof TrailRunning == true) && (vetCorrida[i].local == local || local == "")
+                (vetCorrida[i] instanceof TrailRunning == true) && (vetCorrida[i].local == local || local == "") && 
+               (qtdInscritos <= inscritos && inscritos != null|| inscritos == null)
             )
-            criarRelatorio(i);
+            criarRelatorio(i,qtdInscritos);
             break;
         }
+    }
+    }
 
 
 
@@ -115,19 +140,17 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
         //}
         //console.log(mar1,Maratona);
         //alert(opcaoModalidade);
-     //   if(
+        //   if(
     //        (vetCorrida[i].nome.toUpperCase().includes(nomeCompeticao)) &&
     //         (vetCorrida[i].distancia <= distancia || distancia == 0) &&
     //          (dataVetCorrida <= data || data == "") &&
   //             (vetCorrida[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
-//                (vetCorrida[i] instanceof Maratona == true || opcaoModalidade == "Qualquer modalidade")
+    //                (vetCorrida[i] instanceof Maratona == true || opcaoModalidade == "Qualquer modalidade")
 //        )
         
         
         
     //    criarRelatorio(i);
-    }
-}
 //let tdAltimetria = document.createElement("td");
 //tdAltimetria.textContent = vetCorrida[i].altimetria;
 //trTabela.appendChild(tdAltimetria);
