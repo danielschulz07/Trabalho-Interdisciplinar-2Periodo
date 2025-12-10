@@ -61,12 +61,12 @@ export function criarRelatorio(i, qtdInscritos){
         trTabela.appendChild(tdTipoCorrida);
         trTabela.appendChild(tdLocal);
         
-
-        if(qtdInscritos != 0){
+        
+        //if(qtdInscritos != 0){
             let tdQtdInscritos = document.createElement("td");
             tdQtdInscritos.textContent = qtdInscritos;
             trTabela.appendChild(tdQtdInscritos);
-        }
+        //}
 
         
         //trTabela.appendChild(tabelaCompetidores);
