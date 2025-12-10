@@ -17,50 +17,8 @@ export function pesquisarCompeticao(nomeCompeticao) {
 
 export function adicionarCompeticao(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade,local) {
     let competicao = pesquisarCompeticao(nomeCompeticao);
-    let dataNormal = null;
 
-    if (dataCompeticao.length != 10){
-        let vetDataCompleta = dataCompeticao.toString().split(" ");
-        switch(vetDataCompleta[1]){
-            case "Jan":
-                vetDataCompleta[1] = "01";
-            break;
-            case "Feb":
-                vetDataCompleta[1] = "02";
-            break;
-            case "Mar":
-                vetDataCompleta[1] = "03";
-            break;
-            case "Apr":
-                vetDataCompleta[1] = "04";
-            break;
-            case "May":
-                vetDataCompleta[1] = "05";
-            break;
-            case "Jun":
-                vetDataCompleta[1] = "06";
-            break;
-            case "Jul":
-                vetDataCompleta[1] = "07";
-            break;
-            case "Aug":
-                vetDataCompleta[1] = "08";
-            break;
-            case "Sep":
-                vetDataCompleta[1] = "09";
-            break;
-            case "Oct":
-                vetDataCompleta[1] = "10";
-            break;
-            case "Nov":
-                vetDataCompleta[1] = "11";
-            break;
-            case "Dec":
-                vetDataCompleta[1] = "12";
-            break;
-        }
-        dataNormal = vetDataCompleta[2] + '/' + vetDataCompleta[1] + '/' + vetDataCompleta[3];
-    }
+    let dataNormal = consertarData(dataCompeticao);
 
     if (competicao == null) {
         if (opcaoModalidade == "Maratona") {
@@ -190,13 +148,14 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
 
 
 
+
         switch(opcaoModalidade){
             case "Qualquer modalidade":
             if(
             (vetCompeticoes[i].nomeCompeticao.toUpperCase().includes(nomeCompeticao)) &&
              (vetCompeticoes[i].distancia <= distancia || distancia == 0) &&
               (datavetCompeticoes <= data || data == "") &&
-               (vetCompeticoes[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
+               (vetCompeticoes[i].qtdCompetidores <= qtdCompetidores || qtdCompetidores == 0) &&
                 (vetCompeticoes[i].local == local || local == "") && 
                (qtdInscritos <= inscritos && inscritos != null|| inscritos == null)
             )
@@ -204,10 +163,10 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
             break;
             case "Maratona":
             if(
-            (vetCompeticoes[i].nome.toUpperCase().includes(nomeCompeticao)) &&
+            (vetCompeticoes[i].nomeCompeticao.toUpperCase().includes(nomeCompeticao)) &&
              (vetCompeticoes[i].distancia <= distancia || distancia == 0) &&
               (datavetCompeticoes <= data || data == "") &&
-               (vetCompeticoes[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
+               (vetCompeticoes[i].qtdCompetidores <= qtdCompetidores || qtdCompetidores == 0) &&
                 (vetCompeticoes[i] instanceof Maratona == true) && (vetCompeticoes[i].local == local || local == "") && 
                (qtdInscritos <= inscritos && inscritos != null|| inscritos == null)
             )
@@ -215,10 +174,10 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
             break;
             case "TrailRunning":
             if(
-            (vetCompeticoes[i].nome.toUpperCase().includes(nomeCompeticao)) &&
+            (vetCompeticoes[i].nomeCompeticao.toUpperCase().includes(nomeCompeticao)) &&
              (vetCompeticoes[i].distancia <= distancia || distancia == 0) &&
               (datavetCompeticoes <= data || data == "") &&
-               (vetCompeticoes[i].limiteCorredores <= qtdCompetidores || qtdCompetidores == 0) &&
+               (vetCompeticoes[i].qtdCompetidores <= qtdCompetidores || qtdCompetidores == 0) &&
                 (vetCompeticoes[i] instanceof TrailRunning == true) && (vetCompeticoes[i].local == local || local == "") && 
                (qtdInscritos <= inscritos && inscritos != null|| inscritos == null)
             )
@@ -271,4 +230,52 @@ export function colocacaoCompetidor(idAtleta, idCompeticao, colocacao) {
     let indCompetidor = Model.vetCompetidor.findIndex(objProd => objProd.idAtleta == idAtleta && objProd.idCompeticao == idCompeticao);
     Model.vetCompetidor[indCompetidor].colocacao = colocacao;
     console.log(Model.vetCompetidor[indCompetidor]);
+}
+
+export function consertarData(dataCompeticao){
+    let dataNormal = null;
+
+    if (dataCompeticao.length != 10){
+        let vetDataCompleta = dataCompeticao.toString().split(" ");
+        switch(vetDataCompleta[1]){
+            case "Jan":
+                vetDataCompleta[1] = "01";
+            break;
+            case "Feb":
+                vetDataCompleta[1] = "02";
+            break;
+            case "Mar":
+                vetDataCompleta[1] = "03";
+            break;
+            case "Apr":
+                vetDataCompleta[1] = "04";
+            break;
+            case "May":
+                vetDataCompleta[1] = "05";
+            break;
+            case "Jun":
+                vetDataCompleta[1] = "06";
+            break;
+            case "Jul":
+                vetDataCompleta[1] = "07";
+            break;
+            case "Aug":
+                vetDataCompleta[1] = "08";
+            break;
+            case "Sep":
+                vetDataCompleta[1] = "09";
+            break;
+            case "Oct":
+                vetDataCompleta[1] = "10";
+            break;
+            case "Nov":
+                vetDataCompleta[1] = "11";
+            break;
+            case "Dec":
+                vetDataCompleta[1] = "12";
+            break;
+        }
+        dataNormal = vetDataCompleta[2] + '/' + vetDataCompleta[1] + '/' + vetDataCompleta[3];
+    }
+    return dataNormal;
 }

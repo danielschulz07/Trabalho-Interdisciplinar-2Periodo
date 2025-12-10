@@ -572,7 +572,7 @@ window.onload = function(){
         let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
         let distancia = Number(inDistanciaFiltro.value);
         let dataCorrida = "";
-        if(dtCorrida.value == ""){
+        if(dtCorridaFiltro.value == ""){
             dataCorrida = "";
         }else{
             
@@ -633,7 +633,7 @@ if(btPesquisarCorrida){
         let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
         let distancia = Number(inDistanciaFiltro.value);
         let dataCorrida = "";
-        if(dtCorrida.value == ""){
+        if(dtCorridaFiltro.value == ""){
             dataCorrida = "";
         }else{
     
