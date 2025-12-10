@@ -72,9 +72,9 @@ export function alterarCompeticao(id, nomeCompeticao, distancia, dataCompeticao,
     }
 }
 
-var comp = new Competidor(1,2,1,1);
-var comp1 = new Competidor(0,2,2,3);
-var comp2 = new Competidor(2,3,50,100);
+var comp = new Competidor(1,1,1,1);
+var comp1 = new Competidor(0,1,2,3);
+var comp2 = new Competidor(2,0,50,100);
 
 export var vetCompetidor = [comp, comp1, comp2];
 
@@ -131,10 +131,11 @@ export function criarRelatorio(i, qtdInscritos){
 export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores, opcaoModalidade, local, inscritos){
     tabelaCorridas.textContent = "";
     let datavetCompeticoes = null;
-        for (let i = 0; i < vetCompeticoes.length; i++) {
-            let qtdInscritos = 0;
-            for(let j = 0; j<vetCompetidor.length; j++){
-                if(vetCompetidor[j].idCompeticao == vetCompeticoes[i].id){
+
+    for (let i = 0; i < vetCompeticoes.length; i++) {
+        let qtdInscritos = 0;
+        for(let j = 0; j<vetCompetidor.length; j++){
+            if(vetCompetidor[j].idCompeticao == vetCompeticoes[i].id){
                 qtdInscritos++;
             }
         }

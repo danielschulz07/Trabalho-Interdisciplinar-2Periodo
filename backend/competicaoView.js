@@ -568,7 +568,7 @@ window.onload = function(){
     
     
     }
-        if(inNomeCorridaFiltro){
+        if(inDistanciaFiltro){//teste
         let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
         let distancia = Number(inDistanciaFiltro.value);
         let dataCorrida = "";
@@ -587,9 +587,9 @@ window.onload = function(){
     }
     if(inQtdInscritos){
         let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
-        let distancia = Number(inDistanciaFiltro.value);
+        let distancia = 0;//Number(inDistanciaFiltro.value);
         let dataCorrida = "";
-        if(dtCorrida.value == ""){
+        if(dtCorridaFiltro.value == ""){
             dataCorrida = "";
         }else{
     
@@ -631,13 +631,13 @@ if(btPesquisarCorrida){
 
     btPesquisarCorrida.addEventListener("click", function(){
         let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
-        let distancia = Number(inDistanciaFiltro.value);
+        let distancia = 0;//Number(inDistanciaFiltro.value)
         let dataCorrida = "";
         if(dtCorridaFiltro.value == ""){
             dataCorrida = "";
         }else{
-    
-             dataCorrida = new Date(dtCorridaFiltro.value + "T00:00:00");//Escolher horario?
+            
+            dataCorrida = new Date(dtCorridaFiltro.value + "T00:00:00");//Escolher horario?
         }
         let qtdCompetidores = Number(inQtdCompetidoresFiltro.value);
         let opcaoModalidade = slcOpcaoCorridaFiltro.value;
