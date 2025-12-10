@@ -3,7 +3,7 @@ import { Atleta } from "./Atleta.js";
 const ate = new Atleta("DADA", 20, "12345678910", "br", "TrailRunning");
 const bum = new Atleta("bro", 30, "12345678911", "br", "Maratona");
 const maisum = new Atleta("bro",47,"11111111111","br", "Maratona");
-const vetAtletas = [ate, bum, maisum];
+export const vetAtletas = [ate, bum, maisum];
 console.log(ate)
 
 

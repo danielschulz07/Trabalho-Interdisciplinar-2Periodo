@@ -33,7 +33,31 @@
                 <p id="outSaida"></p>
             </div>
         </div>
+        <div class="lista-competidores">
+            <h2>Lista de Competidores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome <input id="inNome" type="text" placeholder="Nome"></th>
+                        <th>Idade <input id="inIdade" type="number" placeholder="Idade"></th>
+                        <th>CPF <input id="inCpf" type="number" placeholder="CPF"></th>
+                        <th>Nacionalidade <input id="inNacionalidade" type="text" placeholder="Nacionalidade"></th>
+                        <th>Modalidade <select name="opcao" id="slcOpcaoCorridaFiltro">
+                                        <option selected value="Qualquer modalidade">Qualquer modalidade</option>
+                                        <option value="TrailRunning">Trail Running</option>
+                                        <option value="Maratona">Maratona</option>
+                                    </select></th>
+                        <th>Competicao <input id="inNomeCorridaFiltro" type="text" placeholder="Nome da Competição"></th>
+                        <th><input class="button" type="button" id="btPesquisarCompetidor" value="Pesquisar Competidor"></th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaCompetidores">
+
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
    <script src="./backend/competicaoView.js" type="module"></script>
 </html>
+

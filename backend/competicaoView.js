@@ -398,6 +398,7 @@ window.onload = function(){
 
 const btPesquisarAtleta = document.getElementById("btPesquisarAtleta");
 const btPesquisarCorrida = document.getElementById("btPesquisarCorrida");
+const btPesquisarCompetidor = document.getElementById("btPesquisarCompetidor");
 
 if(btPesquisarAtleta){
 
@@ -434,6 +435,20 @@ if(btPesquisarCorrida){
             inscritos = Number(inQtdInscritos.value);
         }
         CompeticaoControl.pesquisarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local, inscritos);
+    })
+}
+
+if(btPesquisarCompetidor){
+    btPesquisarCompetidor.addEventListener("click", function(){
+        let nome = (inNome.value).toUpperCase();
+        let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
+        let idade = Number(inIdade.value);
+        let cpf = inCpf.value;
+        let nacionalidade = inNacionalidade.value;
+        let modalidade = slcOpcaoCorridaFiltro.value;
+
+
+        CompeticaoControl.pesquisarCompetidor(nome,idade, cpf, nacionalidade, modalidade, nomeCompeticao);
     })
 }
 /*

@@ -53,3 +53,7 @@ export function criarRelatorio(){
 export function pesquisarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local, inscritos){
     Model.filtrarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local, inscritos);
 }
+
+export function pesquisarCompetidor(nome,idade, cpf, nacionalidade, modalidade, nomeCompeticao){
+    Model.filtrarCompetidor(nome, idade, cpf, nacionalidade, modalidade, nomeCompeticao);
+}

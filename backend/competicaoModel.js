@@ -3,6 +3,7 @@ import { Competicao } from "./Competicao.js";
 import { TrailRunning } from "./TrailRunning.js";
 import { Maratona } from "./Maratona.js";
 import { Competidor } from "./Competidor.js";
+import * as AtletaModel from "./atletaModel.js";
 
 
 var teste = new Atleta(1213,3123,123,123);
@@ -61,7 +62,7 @@ export function criarRelatorio(i, qtdInscritos){
         trTabela.appendChild(tdTipoCorrida);
         trTabela.appendChild(tdLocal);
         
-        
+
         //if(qtdInscritos != 0){
             let tdQtdInscritos = document.createElement("td");
             tdQtdInscritos.textContent = qtdInscritos;
@@ -126,6 +127,39 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
         }
     }
     }
+export function filtrarCompetidor(nome,idade, cpf, nacionalidade, modalidade, nomeCompeticao){
+        tabelaCompetidores.textContent = "";
+        let nomeAtleta = "";
+        let idadeAtleta = "";
+        let cpfAtleta = "";
+        let nacionalidadeAtleta = "";
+        let modalidadeAtleta = "";
+        let nomeCompeticaoPesquisado = "";
+    for (let i = 0; i < vetCompetidor.length; i++) {
+        for(let j = 0; j < vetAtletas.length; j++){
+            if(AtletaModel.vetAtletas[j].id == vetCompetidor[i].idAtleta){
+                
+            }
+        }
+        for(let k = 0; k < vetCorrida.length; k++){
+            if(vetCorrida[k].id == vetCompetidor[i].idCompeticao){
+                nomeCompeticaoPesquisado = vetCorrida[k].nome;
+            }
+
+        }
+   
+        if(
+            (vetCompetidor[i].idAtleta.toUpperCase().includes(nome)) &&
+            (vetAtletas[i].idade == idade || idade == 0) &&
+            (vetAtletas[i].cpf.includes(cpf) || cpf == "") &&
+            (vetAtletas[i].nacionalidade == nacionalidade || nacionalidade == "") &&
+            (vetAtletas[i].modalidade == modalidade || modalidade == "Qualquer modalidade")// && 
+            //()
+        ){
+            
+        }
+    }
+}
 
 
 

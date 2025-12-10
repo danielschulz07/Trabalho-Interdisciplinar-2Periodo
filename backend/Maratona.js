@@ -18,3 +18,6 @@ export class Maratona extends Competicao{
             "\nPontos Apoio: " + this.#qtdPontoApoio);
     }
 }
+
+
+
