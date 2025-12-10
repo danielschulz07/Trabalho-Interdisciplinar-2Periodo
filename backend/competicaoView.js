@@ -631,7 +631,8 @@ if(btPesquisarCorrida){
 
     btPesquisarCorrida.addEventListener("click", function(){
         let nomeCompeticao = (inNomeCorridaFiltro.value).toUpperCase();
-        let distancia = 0;//Number(inDistanciaFiltro.value)
+
+        let distancia = Number(inDistanciaFiltro.value);
         let dataCorrida = "";
         if(dtCorridaFiltro.value == ""){
             dataCorrida = "";
