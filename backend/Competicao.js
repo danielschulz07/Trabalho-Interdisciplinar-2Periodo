@@ -1,21 +1,21 @@
 export class Competicao {
     static #idStatic = 0;
     #id;
-    #nome;
-    //#altimetria;
+    #nomeCompeticao;
     #distancia;
-    #data;
-    #limiteCorredores;
+    #dataCompeticao;
+    #qtdCompetidores;
+    #modalidade;
     #local
+    #listaCorredores = [];//relatorio precisa do num de valores aq, faz calculo com .lenght
 
-
-    constructor(nome, distancia, data, limiteCorredores, local){
-        this.#nome = nome;
+    constructor(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, modalidade, local){
+        this.#nomeCompeticao = nomeCompeticao;
         this.#distancia = distancia;
-        this.#data = data;
-        this.#limiteCorredores = limiteCorredores;
+        this.#dataCompeticao = dataCompeticao;
+        this.#qtdCompetidores = qtdCompetidores;
+        this.#modalidade = modalidade;
         this.#local = local;
-        //this.#altimetria = altimetria;
         this.#id = Competicao.#idStatic;
         Competicao.#idStatic++;
     }
@@ -24,36 +24,60 @@ export class Competicao {
         return this.#id;
     }
 
-    get nome(){
-        return this.#nome;
+    get nomeCompeticao(){
+        return this.#nomeCompeticao;
     }
 
-    //get altimetria(){
-    //   return this.#altimetria;
-    //}
+    set nomeCompeticao(nomeCompeticao){
+        this.#nomeCompeticao = nomeCompeticao;
+    }
 
     get distancia(){
         return this.#distancia;
     }
-    
-    get data(){
-        return this.#data;
+
+    set distancia(distancia){
+        this.#distancia = distancia;
     }
 
-    get limiteCorredores(){
-        return this.#limiteCorredores;
+    get dataCompeticao(){
+        return this.#dataCompeticao;
+    }
+
+    set dataCompeticao(dataCompeticao){
+        this.#dataCompeticao = dataCompeticao;
+    }
+
+    get qtdCompetidores(){
+        return this.#qtdCompetidores;
+    }
+
+    set qtdCompetidores(qtdCompetidores){
+        this.#qtdCompetidores = qtdCompetidores;
+    }
+
+    get modalidade(){
+        return this.#modalidade;
+    }
+
+    set modalidade(modadalidade){
+        this.#modalidade = modadalidade;
     }
 
     get local(){
         return this.#local;
     }
 
+    set local(local){
+        this.#local = local;
+    }
+
     historico(atleta){
-        atleta.historico(atleta.id,this.#nome);
+        atleta.historico(atleta.id, this.#nomeCompeticao);
     }
 
     toString() {
         return ("\nid: " + this.id +
-            "\nlista: "  + this.#nome);
+            "\nlista: "  + this.#nomeCompeticao);
     } 
 }

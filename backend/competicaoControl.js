@@ -1,42 +1,22 @@
-import { Competicao } from "./Competicao.js";
-import { Competidor } from "./Competidor.js";
-import * as Model from "./competicaoModel.js";
+import * as CompeticoesModel from "./competicaoModel.js";
 
-let comp = new Competicao("zxc","zxc","zxc","zxc","zxc");
-const vetCompeticoes = [comp];
-
-export function pesquisarCompeticao(nomeCompeticao){
-    let indCompeticao = vetCompeticoes.findIndex(objProd => objProd.nome == nomeCompeticao);
-    return (indCompeticao == -1) ? null : vetCompeticoes[indCompeticao];
-}
-
-//export function pesquisarCompeticaoID(nomeCompeticao){
-//   let indCompeticao = vetCompeticoes.findIndex(objProd => objProd.nomeCompeticao == nomeCompeticao);
-//    return (indCompeticao == -1) ? null : indCompeticao;
-//}
-
-
-export function adicionarCompeticao(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade){
-    let competicao = pesquisarCompeticao(nomeCompeticao);
-
-    if(competicao == null){
-        competicao = new Competicao(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, opcaoModalidadeTrail, opcaoDificuldade)
-        vetCompeticoes.push(competicao);
-        console.log(vetCompeticoes);
-        return true;
+export function adicionar(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade) {
+    if (CompeticoesModel.adicionarCompeticao(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade) == true) {
+        return "Competição inserido com sucesso!"
     }
-    return false;
+    return "Erro! A competição " + nomeCompeticao + " já estava cadastrado!"
 }
 
-export function vincularCompetidor(idAtleta, idCompeticao, identificador){
-    let competidor = new Competidor(idAtleta, idCompeticao, identificador);
-    Model.vetCompetidor.push(competidor);
-    //return console.log(Model.vetCompetidor[0]);
+export function excluir(nomeCompeticao){
+    if(CompeticoesModel.excluirCompeticao(nomeCompeticao, CompeticoesModel) == true){
+        return "Competição Ecluida com sucesso!"
+    }
+    return "Erro! A Competição " + nomeCompeticao + " Não Existe!"
 }
 
-export function checarVetCompetidor(idAtleta, idCompeticao){
-        let indCompetidor = Model.vetCompetidor.findIndex(objProd => objProd.idAtleta == idAtleta && objProd.idCompeticao == idCompeticao);
-    return (indCompetidor == -1) ? null : true;
+export function procurar(nomeCompeticao) {
+    let atletaEncontrado = CompeticoesModel.procurarCompeticao(nomeCompeticao)
+    return atletaEncontrado;
 }
 
 export function colocacaoCompetidor(idAtleta, idCompeticao, colocacao){
@@ -52,4 +32,11 @@ export function criarRelatorio(){
 
 export function pesquisarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local, inscritos){
     Model.filtrarCorrida(nomeCompeticao, distancia, dataCorrida, qtdCompetidores, opcaoModalidade, local, inscritos);
+
+}
+
+export function alterar(id, nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade){
+    let competicaEncontrada = CompeticoesModel.alterarCompeticao(id, nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade);
+    return competicaEncontrada;
+
 }
