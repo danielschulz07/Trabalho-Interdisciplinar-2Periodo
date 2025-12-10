@@ -6,8 +6,7 @@ export class Competicao {
     #dataCompeticao;
     #qtdCompetidores;
     #modalidade;
-    #local
-    #listaCorredores = [];//relatorio precisa do num de valores aq, faz calculo com .lenght
+    #local;
 
     constructor(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, modalidade, local){
         this.#nomeCompeticao = nomeCompeticao;

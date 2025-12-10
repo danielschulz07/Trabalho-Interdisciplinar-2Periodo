@@ -30,5 +30,5 @@ export function criarRelatorio(){
 }
 
 export function pesquisarAtleta(nome, idade, cpf, nacionalidade, modalidade){
-    vetAtletas.filtrarAtleta(nome, idade, cpf, nacionalidade, modalidade);
+    atletaModel.filtrarAtleta(nome, idade, cpf, nacionalidade, modalidade);
 }
