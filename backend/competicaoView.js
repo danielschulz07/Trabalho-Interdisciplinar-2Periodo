@@ -330,7 +330,13 @@ if (btCadastrarCorrida) {
         qtdCompetidores = 0;
         opcaoModalidade = "Qualquer modalidade";
         local = "";
-        CompeticaoControl.pesquisarCorrida(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, local);
+        let inscritos = null;
+        if(inQtdInscritos.value == ""){
+            inscritos = null;
+        } else {
+            inscritos = Number(inQtdInscritos.value);
+        }
+        CompeticaoControl.pesquisarCorrida(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, local, inscritos);
     });
 }
 

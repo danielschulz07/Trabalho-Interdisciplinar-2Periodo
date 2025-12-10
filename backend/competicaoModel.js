@@ -17,15 +17,59 @@ export function pesquisarCompeticao(nomeCompeticao) {
 
 export function adicionarCompeticao(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, ganhoElevacao, qtdCheckMaratona, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade,local) {
     let competicao = pesquisarCompeticao(nomeCompeticao);
+    let dataNormal = null;
+
+    if (dataCompeticao.length != 10){
+        let vetDataCompleta = dataCompeticao.toString().split(" ");
+        switch(vetDataCompleta[1]){
+            case "Jan":
+                vetDataCompleta[1] = "01";
+            break;
+            case "Feb":
+                vetDataCompleta[1] = "02";
+            break;
+            case "Mar":
+                vetDataCompleta[1] = "03";
+            break;
+            case "Apr":
+                vetDataCompleta[1] = "04";
+            break;
+            case "May":
+                vetDataCompleta[1] = "05";
+            break;
+            case "Jun":
+                vetDataCompleta[1] = "06";
+            break;
+            case "Jul":
+                vetDataCompleta[1] = "07";
+            break;
+            case "Aug":
+                vetDataCompleta[1] = "08";
+            break;
+            case "Sep":
+                vetDataCompleta[1] = "09";
+            break;
+            case "Oct":
+                vetDataCompleta[1] = "10";
+            break;
+            case "Nov":
+                vetDataCompleta[1] = "11";
+            break;
+            case "Dec":
+                vetDataCompleta[1] = "12";
+            break;
+        }
+        dataNormal = vetDataCompleta[2] + '/' + vetDataCompleta[1] + '/' + vetDataCompleta[3];
+    }
 
     if (competicao == null) {
         if (opcaoModalidade == "Maratona") {
-            competicao = new Maratona(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade,local, ganhoElevacao, qtdCheckMaratona);
+            competicao = new Maratona(nomeCompeticao, distancia, dataNormal, qtdCompetidores, opcaoModalidade,local, ganhoElevacao, qtdCheckMaratona);
             vetCompeticoes.push(competicao);
             console.log(vetCompeticoes);
             return true;
         } if (opcaoModalidade == "TrailRunning") {
-            competicao = new TrailRunning(nomeCompeticao, distancia, dataCompeticao, qtdCompetidores, opcaoModalidade, local, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade);
+            competicao = new TrailRunning(nomeCompeticao, distancia, dataNormal, qtdCompetidores, opcaoModalidade, local, qtdCheckTrail, tipoTerreno, opcaoModalidadeTrail, opcaoDificuldade);
             vetCompeticoes.push(competicao);
             console.log(vetCompeticoes);
             return true;
@@ -128,6 +172,7 @@ export function criarRelatorio(i, qtdInscritos){
 
 export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores, opcaoModalidade, local, inscritos){
     tabelaCorridas.textContent = "";
+    let datavetCompeticoes = null;
         for (let i = 0; i < vetCompeticoes.length; i++) {
             let qtdInscritos = 0;
             for(let j = 0; j<vetCompetidor.length; j++){
@@ -135,9 +180,13 @@ export function filtrarCorrida(nomeCompeticao, distancia, data, qtdCompetidores,
                 qtdInscritos++;
             }
         }
-        let vetDDMMAAAA = vetCompeticoes[i].dataCompeticao.split('/');
-        let MMDDAAAA = vetDDMMAAAA[1] + '-' + vetDDMMAAAA[0] + '-' + vetDDMMAAAA[2];
-        let datavetCompeticoes = new Date(MMDDAAAA);
+        if(vetCompeticoes[i].dataCompeticao.length == 10){
+            //alert(vetCompeticoes[i].dataCompeticao);
+            let vetDDMMAAAA = vetCompeticoes[i].dataCompeticao.split('/');
+            let MMDDAAAA = vetDDMMAAAA[1] + '-' + vetDDMMAAAA[0] + '-' + vetDDMMAAAA[2];
+            datavetCompeticoes = new Date(MMDDAAAA);
+        }
+
 
 
 
